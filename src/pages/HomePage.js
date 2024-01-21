@@ -109,12 +109,14 @@ const HomePage = () => {
   };
   return (
     <Layout title={"ALl Products - Best offers "}>
-      <div className="row hero_div">
-        <div className="col-md-6">
+      <div className="hero_section row">
+        <div className="col-md-3">
+        <img src={homeBanner} style={{marginTop:"50px", maxwidth:"100%", Height:"100%", display:"inline"}}></img>
         </div>
-        <div className="col-md-6">
-          <p>Your text goes here</p>
-        </div>
+      </div>
+
+      <div className="col-md-9">
+        <h1>NihalNihalNihalNihalNihalNihalNihalNihal</h1>
       </div>
 
       <div
@@ -122,11 +124,17 @@ const HomePage = () => {
         style={{ backgroundColor: "#F9F9E0" }}
       >
         <div
-          className="col-md-3 filters  mt-4"
-          style={{ backgroundColor: "#F5F7F8" }}
+          className="col-md-2 filters"
+          style={{ 
+            backgroundColor: "#F5F7F8", 
+            marginLeft:"50px", 
+            borderRadius:"8px", 
+            boxShadow:"0px 0px 5px #000",
+            marginTop:"35px"
+           }}
         >
           <h4 className="text-center ">Filter By Category</h4>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column" >
             {categories?.map((c) => (
               <Checkbox
                 key={c._id}
@@ -138,6 +146,7 @@ const HomePage = () => {
           </div>
           {/* price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
+        
           <div className="d-flex flex-column">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
@@ -158,15 +167,28 @@ const HomePage = () => {
         </div>
         <div className="col-md-9 ">
           {/* <h1 className="text-center">All Products</h1> */}
-          <div className="d-flex flex-wrap mt-4">
+          <div className="d-flex flex-wrap mt-4" style={{marginLeft:"50px"}}
+  >
+
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
+                  style={{backgroundColor:"#FFE382"}}
                 />
-                <div className="card-body">
+                <div className="card-body" style={{backgroundColor:"#FFE382", borderRadius:"10px"}}>
+                    <div style={{
+                      backgroundColor:"#256FEF", 
+                      color:"white", 
+                      maxWidth:"80px",
+                      padding:"0px 0px 0px 10px",
+                      borderBottomRightRadius:"6px",
+                      borderTopRightRadius:"6px",
+                      marginLeft:"-16px",
+                      marginBottom:"8px",
+                      }}>50% OFF</div>
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
@@ -189,7 +211,7 @@ const HomePage = () => {
                     </button>
                     <button
                       className="btn  ms-1"
-                      style={{ backgroundColor: "#D80032" }}
+                      style={{ backgroundColor: "#D80032",color:"white" }}
                       onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem(
